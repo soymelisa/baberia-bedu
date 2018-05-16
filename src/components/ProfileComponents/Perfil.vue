@@ -2,9 +2,8 @@
   .container
     hr
     b-nav(fill='')
-      b-nav-item Home
-      b-nav-item Citas
       b-nav-item Perfil
+      b-nav-item Citas
       b-nav-item(v-on:click='logout') Logout
     hr
   
@@ -27,7 +26,7 @@
       p
         input#telefono(type='text', name='telefono', v-model='telefono', placeholder='Teléfono')
       p
-        input.boton(type='submit', value='Submit')
+        input.boton(type='submit', value='Submit', v-on:click='regIn')
 </template>
 
 <script>
@@ -38,6 +37,7 @@ export default {
   data: function () {
     return {
       errors: [],
+      id: Math.random(),
       nombre: null,
       apellidos: null,
       edad: null,
@@ -53,6 +53,16 @@ export default {
       if (!this.correo) this.errors.push('Contacto.')
       if (!this.telefono) this.errors.push('Teléfono.')
       e.preventDefault()
+    },
+    regIn: function (id, nombre, apellidos, edad, correo, telefono) {
+      firebase.database().ref('usuarios/').set({
+        id: this.id,
+        nombre: this.nombre,
+        apellidos: this.apellidos,
+        edad: this.edad,
+        correo: this.correo,
+        telefono: this.telefono
+      })
     },
     logout: function () {
       firebase.auth().signOut().then(() => {
