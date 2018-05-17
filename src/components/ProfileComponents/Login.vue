@@ -39,7 +39,11 @@
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('perfil')
+            if (this.email == firebase.database()) {
+              this.$router.replace('citas')
+          } else {
+              this.$router.replace('perfil')
+          }
           },
           (err) => {
             alert('Upss!' + err.message)

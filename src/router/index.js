@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Perfil from '@/components/ProfileComponents/Perfil'
 import Login from '@/components/ProfileComponents/Login'
 import SignUp from '@/components/ProfileComponents/SignUp'
+import Citas from '@/components/ProfileComponents/Citas'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -33,6 +34,14 @@ let router = new Router({
       path: '/perfil',
       name: 'Perfil',
       component: Perfil,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/citas',
+      name: 'Citas',
+      component: Citas,
       meta: {
         requiresAuth: true
       }

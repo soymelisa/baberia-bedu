@@ -22,7 +22,7 @@
         //- label(for='edad') Edad
         input#age(type='number', name='edad', v-model='edad', min='0', placeholder='Edad')
       p
-        input#correo(type='email', name='correo', v-model='correo', placeholder='Correo Eléctronico')
+        input#correo(type='email', name='email', v-model='email', placeholder='Correo Eléctronico')
       p
         input#telefono(type='text', name='telefono', v-model='telefono', placeholder='Teléfono')
       p
@@ -37,11 +37,10 @@ export default {
   data: function () {
     return {
       errors: [],
-      id: Math.random(),
       nombre: null,
       apellidos: null,
       edad: null,
-      correo: null,
+      email: null,
       telefono: null
     }
   },
@@ -50,17 +49,16 @@ export default {
       if (this.name && this.age) return true
       this.errors = []
       if (!this.nombre) this.errors.push('Nombre.')
-      if (!this.correo) this.errors.push('Contacto.')
+      if (!this.email) this.errors.push('Contacto.')
       if (!this.telefono) this.errors.push('Teléfono.')
       e.preventDefault()
     },
-    regIn: function (id, nombre, apellidos, edad, correo, telefono) {
-      firebase.database().ref('usuarios/').set({
-        id: this.id,
+    regIn: function (nombre, apellidos, edad, email, telefono) {
+      firebase.database().ref(`usuarios/`).push({
         nombre: this.nombre,
         apellidos: this.apellidos,
         edad: this.edad,
-        correo: this.correo,
+        email: this.email,
         telefono: this.telefono
       })
     },
