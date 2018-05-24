@@ -25,7 +25,7 @@
 
 <script>
 /* eslint-disable */
-  import firebase from 'firebase'
+  import firebase,{ functions } from 'firebase'
 
   export default {
     name: 'login',
@@ -39,11 +39,13 @@
       signIn: function () {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            if (this.email == firebase.database()) {
-              this.$router.replace('citas')
-          } else {
+            var x = firebase.database().ref().equalTo(this.email)
+            console.log(x)
+            if (this.email === x) {
+              this.$router.replace('/citas')
+            } else {
               this.$router.replace('perfil')
-          }
+            }
           },
           (err) => {
             alert('Upss!' + err.message)

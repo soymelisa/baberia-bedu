@@ -13,13 +13,10 @@
         ul
           li(v-for='error in errors') {{ error }}
       p
-        //- label(for='nombre') Nombre
         input#nombre(type='text', name='nombre', v-model='nombre', placeholder='Nombre')
       p
-        //- label(for='apellidos') Apellidos
         input#apellidos(type='text', name='apellidos', v-model='apellidos', placeholder='Apellidos')
       p
-        //- label(for='edad') Edad
         input#age(type='number', name='edad', v-model='edad', min='0', placeholder='Edad')
       p
         input#correo(type='email', name='email', v-model='email', placeholder='Correo Eléctronico')

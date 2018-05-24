@@ -10,10 +10,19 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'citas',
   data: function () {
     return {}
+  },
+  methods: {
+    logout: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
+    }
   }
 }
 </script>
